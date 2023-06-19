@@ -3,6 +3,23 @@ let form = document.getElementById('form');
 form.addEventListener('submit', e => {
     e.preventDefault()
 })
+//Form Fields
+const title = document.getElementById('title');
+const author = document.getElementById('author');
+const pages = document.getElementById('pages');
+const read = document.getElementById('read');
+
+function getFieldsValues() {
+    let newBookValues = {}
+    newBookValues['title'] = title.value;
+    newBookValues['author'] = author.value;
+    newBookValues['pages'] = pages.value;
+    newBookValues['read'] = read.value;
+    return newBookValues
+}
+
+
+
 function Book(title, author, pages, read) {
     this.title = title;
     this.author = author,
@@ -14,9 +31,12 @@ function Book(title, author, pages, read) {
 }
 Book.prototype.toggleRead = () => { this.read = !read }
 function addBookToLibrary() {
-
+    const newBookData = getFieldsValues();
+    const newBook = new Book(newBookData.title, newBookData.author, newBookData.pages, newBookData.read)
+    myLibrary.push(newBook)
+    console.log(myLibrary)
 }
 
-let theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 295, false);
+
 
 console.log(theHobbit.info())
